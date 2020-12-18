@@ -225,42 +225,48 @@ fn process_entries(xml_definitions: Vec<XmlDicomDefinition>, folder: &Path) -> R
         &mut lookup_file,
         "pub static TAG_BY_IDENT: phf::Map<&'static str, TagRef> = "
     )?;
-    tag_ident_lookup_phf.build(&mut lookup_file)?;
+    let map_display = tag_ident_lookup_phf.build();
+    write!(&mut lookup_file, "{}", &map_display)?;
 
     write!(&mut lookup_file, ";\n\n")?;
     write!(
         &mut lookup_file,
         "pub static TAG_BY_VALUE: phf::Map<u32, TagRef> = "
     )?;
-    tag_tag_lookup_phf.build(&mut lookup_file)?;
+    let map_display = tag_tag_lookup_phf.build();
+    write!(&mut lookup_file, "{}", &map_display)?;
 
     write!(&mut lookup_file, ";\n\n")?;
     write!(
         &mut lookup_file,
         "pub static TS_BY_IDENT: phf::Map<&'static str, TSRef> = "
     )?;
-    ts_ident_lookup_phf.build(&mut lookup_file)?;
+    let map_display = ts_ident_lookup_phf.build();
+    write!(&mut lookup_file, "{}", &map_display)?;
 
     write!(&mut lookup_file, ";\n\n")?;
     write!(
         &mut lookup_file,
         "pub static TS_BY_UID: phf::Map<&'static str, TSRef> = "
     )?;
-    ts_id_lookup_phf.build(&mut lookup_file)?;
+    let map_display = ts_id_lookup_phf.build();
+    write!(&mut lookup_file, "{}", &map_display)?;
 
     write!(&mut lookup_file, ";\n\n")?;
     write!(
         &mut lookup_file,
         "pub static UID_BY_IDENT: phf::Map<&'static str, UIDRef> = "
     )?;
-    uid_ident_lookup_phf.build(&mut lookup_file)?;
+    let map_display = uid_ident_lookup_phf.build();
+    write!(&mut lookup_file, "{}", &map_display)?;
 
     write!(&mut lookup_file, ";\n\n")?;
     write!(
         &mut lookup_file,
         "pub static UID_BY_UID: phf::Map<&'static str, UIDRef> = "
     )?;
-    uid_id_lookup_phf.build(&mut lookup_file)?;
+    let map_display = uid_id_lookup_phf.build();
+    write!(&mut lookup_file, "{}", &map_display)?;
     writeln!(&mut lookup_file, ";")?;
 
     Ok(())

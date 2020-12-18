@@ -5,7 +5,7 @@ authors = ["neandrake <die.drachen@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-phf_codegen = "0.7"
+phf_codegen = "0.8"
 quick-xml = "0.18"
 
 [lib]
